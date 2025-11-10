@@ -1,0 +1,49 @@
+%%% M-QAM
+
+clear all;
+close all;
+clc;
+
+% Define the range of Eb/N0 in decibels
+Eb_N0_dB = 0:0.5:35;
+
+% --- Calculate BER for different M values ---
+
+% For 4-QAM
+M_4 = 4;
+BER_4 = berawgn(Eb_N0_dB, 'qam', M_4, 'nondiff');
+
+% For 16-QAM
+M_16 = 16;
+BER_16 = berawgn(Eb_N0_dB, 'qam', M_16, 'nondiff');
+
+% For 64-QAM
+M_64 = 64;
+BER_64 = berawgn(Eb_N0_dB, 'qam', M_64, 'nondiff');
+
+% --- Plotting the results ---
+figure(1);
+semilogy(Eb_N0_dB, BER_4, 'g');  % Green for 4-QAM
+
+hold on % Hold the plot to overlay multiple curves
+
+% Plot BER curves for each M value with different colors
+semilogy(Eb_N0_dB, BER_16, 'r'); % Red for 16-QAM
+semilogy(Eb_N0_dB, BER_64, 'k'); % Black for 64-QAM
+
+grid on % Turn on the grid
+
+% Set axis limits
+axis([0 35 1e-5 1]);
+
+% Add labels and title
+xlabel("Eb/N0");
+ylabel("BER");
+title("M-QAM Modulation Over Gaussian Noise");
+
+% Add legend to identify the curves
+legend('4QAM AWGN Channel', '16QAM AWGN Channel', '64QAM AWGN Channel');
+
+hold off;
+
+Explain code along with concepts and also give viva question answers
