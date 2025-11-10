@@ -1,0 +1,18 @@
+clear all;
+close all;
+
+SNR=10;
+
+k = 2;
+
+M=2^k; %Size
+
+data = randi([0 M-1],1000,1);
+
+y1= pskmod(data,M);
+
+y1n= awgn(y1,SNR,'measured');
+
+scatterplot(y1);
+
+scatterplot(y1n);
