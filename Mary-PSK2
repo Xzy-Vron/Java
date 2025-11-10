@@ -1,0 +1,42 @@
+%Name : Avinash Ganore
+%Roll Number : 08
+%Class : TE-E&TC-1
+%Batch : T1
+%Academic Year:2025 - 26
+
+%Experiment Title : M-ary PSK Modulation over Gaussian Noise%
+
+clear all;
+close all;
+clc;
+
+Eb_N0_dB= 0:0.5:35;
+
+M_4=4;
+BER_4= berawgn(Eb_N0_dB,'psk',M_4,'nondiff');
+
+M_8=8;
+BER_8= berawgn(Eb_N0_dB,'psk',M_8,'nondiff');
+
+M_16= 16;
+BER_16= berawgn(Eb_N0_dB,'psk',M_16,'nondiff');
+
+M_32 = 32;
+BER_32 = berawgn(Eb_N0_dB,'psk',M_32,'nondiff');
+
+figure(1);
+semilogy(Eb_N0_dB,BER_4,'b');
+hold on;
+semilogy(Eb_N0_dB,BER_8,'r');
+semilogy(Eb_N0_dB,BER_16,'k');
+semilogy(Eb_N0_dB,BER_32,'m');
+hold off;
+
+grid on;
+axis([0 35 1e-5 1]);
+legend('QPSK AWGN Channel','8PSK AWGN Channel','16 PSK AWGN Channel','32 PSK AWGN');
+xlabel('Eb/N0');
+ylabel('BER');
+title('M-PSK Modulation Over Gaussian Noise');
+
+Explain the code along with the viva questions which will be asked along with answers.
