@@ -1,0 +1,46 @@
+%Name : Hemant R.Murkute
+%Div : TE - 1
+%Roll No. : 08
+
+% TITLE OF EXPERIMENT : Linear Block Code
+clc;
+clear all;
+close all;
+n=input('Enter n :');
+k=input('Enter k :');
+d=input('Enter data :');
+G=input('Enter generator matrix:');
+c=d*G;
+c=rem(c,2);
+disp('Data is :');
+disp(d);
+disp('Generator matrix is :');
+disp(G);
+disp('Code is :');
+disp(c);
+
+%Decoding of LBC
+p=input('Enter parity matrix :');
+h=horzcat(p.',eye(n-k));
+ec1=vertcat(zeros(1,n), eye(n));
+ec2=vertcat(zeros(1,n-k), h.');
+disp('ERROR DECODING TABLE :');
+e=horzcat(ec1,ec2);
+disp(e);
+r=input('Enter the received message :');
+s=rem(r*h.',2);
+disp('SYNDROME IS (S):');
+disp(s);
+if s==zeros(1,n-k)
+disp('NO ERROR IN RECEIVED MESSAGE');
+else
+disp('ERROR IN BIT');
+d=find(ismember(ec2,s,'rows'));
+disp(d-1);
+r(c(d-1),:)
+disp('CORRECTED CODEWORD IS :');
+R=rem(r,2);
+disp(R);
+end
+
+Explain code along with concepts and also give viva question answers
